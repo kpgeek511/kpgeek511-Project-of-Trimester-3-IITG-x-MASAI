@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Orders - CampusMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">
+                    <div class="brand-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                            <path d="M8 12h16l-1.5 8H9.5L8 12z" fill="white"/>
+                            <circle cx="12" cy="24" r="2" fill="white"/>
+                            <circle cx="20" cy="24" r="2" fill="white"/>
+                            <path d="M6 8h20v2H6V8z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#6366f1"/>
+                                    <stop offset="1" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">CampusMart</span>
+                        <span class="brand-tagline">Your Campus Store</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/products" class="nav-link">Products</a>
+                <a href="/orders" class="nav-link">My Orders</a>
+                <a href="/group-orders" class="nav-link active">Group Orders</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="cart-icon">
+                    <a href="/cart" id="cartLink" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                
+                <div class="user-menu" id="userMenu">
+                    <button class="user-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Guest</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="/orders" class="dropdown-item">
+                            <i class="fas fa-box"></i> My Orders
+                        </a>
+                        <a href="/reviews" class="dropdown-item">
+                            <i class="fas fa-star"></i> My Reviews
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn btn-outline" onclick="app.showAuthModal()">Login</button>
+                    <button class="btn btn-primary" onclick="app.showAuthModal()">Register</button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="group-orders-page">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>Group Orders</h1>
+                <p>Coordinate with your department for bulk orders and save money</p>
+            </div>
+
+            <!-- Group Order Actions -->
+            <div class="group-actions">
+                <button class="btn btn-primary" id="createGroupOrderBtn">
+                    <i class="fas fa-plus"></i>
+                    Create Group Order
+                </button>
+                <button class="btn btn-outline" id="joinGroupOrderBtn">
+                    <i class="fas fa-users"></i>
+                    Join Group Order
+                </button>
+            </div>
+
+            <!-- Group Orders List -->
+            <div class="group-orders-section">
+                <div class="section-header">
+                    <h2>Active Group Orders</h2>
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-status="">All</button>
+                        <button class="filter-tab" data-status="open">Open</button>
+                        <button class="filter-tab" data-status="closed">Closed</button>
+                        <button class="filter-tab" data-status="completed">Completed</button>
+                    </div>
+                </div>
+                
+                <div class="group-orders-list" id="groupOrdersList">
+                    <!-- Group orders will be loaded here -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading group orders...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Create Group Order Modal -->
+    <div class="modal" id="createGroupOrderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Group Order</h3>
+                <button class="modal-close" id="closeCreateGroupOrderModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createGroupOrderForm">
+                    <div class="form-group">
+                        <label for="groupOrderName">Group Order Name</label>
+                        <input type="text" id="groupOrderName" name="name" required placeholder="e.g., Computer Science Department Order">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="groupOrderDescription">Description</label>
+                        <textarea id="groupOrderDescription" name="description" rows="3" placeholder="Describe the purpose of this group order..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="groupOrderDeadline">Order Deadline</label>
+                        <input type="datetime-local" id="groupOrderDeadline" name="deadline" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="groupOrderMinAmount">Minimum Order Amount (₹)</label>
+                        <input type="number" id="groupOrderMinAmount" name="minAmount" min="0" placeholder="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="groupOrderMaxParticipants">Maximum Participants</label>
+                        <input type="number" id="groupOrderMaxParticipants" name="maxParticipants" min="2" max="100" placeholder="10">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="groupOrderManager.closeCreateModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Group Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Group Order Modal -->
+    <div class="modal" id="joinGroupOrderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Join Group Order</h3>
+                <button class="modal-close" id="closeJoinGroupOrderModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="joinGroupOrderForm">
+                    <div class="form-group">
+                        <label for="groupOrderCode">Group Order Code</label>
+                        <input type="text" id="groupOrderCode" name="code" required placeholder="Enter the group order code">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" onclick="groupOrderManager.closeJoinModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Join Group Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">CampusMart</h4>
+                    <p class="footer-description">
+                        Your trusted campus store for all merchandise needs. 
+                        Quality products, great prices, and excellent service.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/campusmart" class="social-link" target="_blank" title="Follow us on Facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://twitter.com/campusmart" class="social-link" target="_blank" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://instagram.com/campusmart" class="social-link" target="_blank" title="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://linkedin.com/company/campusmart" class="social-link" target="_blank" title="Connect with us on LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://youtube.com/campusmart" class="social-link" target="_blank" title="Subscribe to our YouTube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="https://tiktok.com/@campusmart" class="social-link" target="_blank" title="Follow us on TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/group-orders">Group Orders</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="/help">Help Center</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/shipping">Shipping Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@campusmart.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Campus Store, University Campus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CampusMart. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/group-orders.js"></script>
+</body>
+</html>
+
+
+
+
+

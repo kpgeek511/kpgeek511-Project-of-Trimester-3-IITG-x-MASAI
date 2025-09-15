@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - CampusMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">
+                    <div class="brand-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                            <path d="M8 12h16l-1.5 8H9.5L8 12z" fill="white"/>
+                            <circle cx="12" cy="24" r="2" fill="white"/>
+                            <circle cx="20" cy="24" r="2" fill="white"/>
+                            <path d="M6 8h20v2H6V8z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#6366f1"/>
+                                    <stop offset="1" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">CampusMart</span>
+                        <span class="brand-tagline">Your Campus Store</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/products" class="nav-link">Products</a>
+                <a href="/orders" class="nav-link">My Orders</a>
+                <a href="/group-orders" class="nav-link">Group Orders</a>
+                <a href="/reviews" class="nav-link">Reviews</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="cart-icon">
+                    <a href="/cart" id="cartLink" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                
+                <div class="user-menu" id="userMenu">
+                    <button class="user-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Guest</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/profile" class="dropdown-item active">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="/orders" class="dropdown-item">
+                            <i class="fas fa-box"></i>
+                            <span>My Orders</span>
+                        </a>
+                        <a href="/reviews" class="dropdown-item">
+                            <i class="fas fa-star"></i>
+                            <span>My Reviews</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/logout" class="dropdown-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn btn-outline" onclick="app.showAuthModal()">Login</button>
+                    <button class="btn btn-primary" onclick="app.showAuthModal()">Register</button>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="profile-page">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>My Profile</h1>
+                <p>Manage your account information and preferences</p>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="profile-content">
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <div class="avatar-container">
+                                <div class="avatar-icon">
+                                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect width="64" height="64" rx="16" fill="url(#avatarGradient)"/>
+                                        <path d="M32 20c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6zm0-28C18.745 10 8 20.745 8 34s10.745 24 24 24 24-10.745 24-24S45.255 10 32 10zm0 44c-11.046 0-20-8.954-20-20s8.954-20 20-20 20 8.954 20 20-8.954 20-20 20z" fill="white"/>
+                                        <defs>
+                                            <linearGradient id="avatarGradient" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#6366f1"/>
+                                                <stop offset="1" stop-color="#8b5cf6"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div class="avatar-status">
+                                    <div class="status-indicator online"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-info">
+                            <h2 class="profile-name" id="profileName">Loading...</h2>
+                            <p class="profile-email" id="profileEmail">Loading...</p>
+                            <p class="profile-role" id="profileRole">Student</p>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn btn-outline" id="editProfileBtn">
+                                <i class="fas fa-edit"></i>
+                                Edit Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Sections -->
+                <div class="profile-sections">
+                    <!-- Personal Information -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="24" height="24" rx="6" fill="url(#personalGradient)"/>
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="white"/>
+                                    <defs>
+                                        <linearGradient id="personalGradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#3b82f6"/>
+                                            <stop offset="1" stop-color="#1d4ed8"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3>Personal Information</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <label>First Name</label>
+                                    <span id="firstName">Loading...</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Last Name</label>
+                                    <span id="lastName">Loading...</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Email</label>
+                                    <span id="userEmail">Loading...</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Phone</label>
+                                    <span id="userPhone">Loading...</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Department</label>
+                                    <span id="userDepartment">Loading...</span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Student ID</label>
+                                    <span id="studentId">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Statistics -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="24" height="24" rx="6" fill="url(#ordersGradient)"/>
+                                    <path d="M7 4V2c0-.55-.45-1-1-1s-1 .45-1 1v2c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2V2c0-.55-.45-1-1-1s-1 .45-1 1v2H7zm12 15H5V8h14v11z" fill="white"/>
+                                    <defs>
+                                        <linearGradient id="ordersGradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#10b981"/>
+                                            <stop offset="1" stop-color="#059669"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3>Order Statistics</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number" id="totalOrders">0</span>
+                                        <span class="stat-label">Total Orders</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number" id="completedOrders">0</span>
+                                        <span class="stat-label">Completed</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number" id="pendingOrders">0</span>
+                                        <span class="stat-label">Pending</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-rupee-sign"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-number" id="totalSpent">₹0</span>
+                                        <span class="stat-label">Total Spent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="24" height="24" rx="6" fill="url(#settingsGradient)"/>
+                                    <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="white"/>
+                                    <defs>
+                                        <linearGradient id="settingsGradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#f59e0b"/>
+                                            <stop offset="1" stop-color="#d97706"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3>Account Settings</h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="settings-list">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Change Password</h4>
+                                        <p>Update your account password</p>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">Change</button>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Notification Preferences</h4>
+                                        <p>Manage email and SMS notifications</p>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">Manage</button>
+                                </div>
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4>Privacy Settings</h4>
+                                        <p>Control your privacy and data sharing</p>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm">Settings</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">CampusMart</h4>
+                    <p class="footer-description">
+                        Your trusted campus store for all merchandise needs. 
+                        Quality products, great prices, and excellent service.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/campusmart" class="social-link" target="_blank" title="Follow us on Facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://twitter.com/campusmart" class="social-link" target="_blank" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://instagram.com/campusmart" class="social-link" target="_blank" title="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://linkedin.com/company/campusmart" class="social-link" target="_blank" title="Connect with us on LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://youtube.com/campusmart" class="social-link" target="_blank" title="Subscribe to our YouTube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="https://tiktok.com/@campusmart" class="social-link" target="_blank" title="Follow us on TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/group-orders">Group Orders</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="/help">Help Center</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/shipping">Shipping Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@campusmart.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Campus Store, University Campus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CampusMart. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
+
+
+
+
+

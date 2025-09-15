@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusMart - Your Campus Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">
+                    <div class="brand-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                            <path d="M8 12h16l-1.5 8H9.5L8 12z" fill="white"/>
+                            <circle cx="12" cy="24" r="2" fill="white"/>
+                            <circle cx="20" cy="24" r="2" fill="white"/>
+                            <path d="M6 8h20v2H6V8z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#6366f1"/>
+                                    <stop offset="1" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">CampusMart</span>
+                        <span class="brand-tagline">Your Campus Store</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/products" class="nav-link">
+                    <i class="fas fa-store"></i>
+                    <span>Products</span>
+                </a>
+                <a href="/orders" class="nav-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>My Orders</span>
+                </a>
+                <a href="/group-orders" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Group Orders</span>
+                </a>
+                <a href="/reviews" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Reviews</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products..." class="search-input">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="cart-icon">
+                    <a href="/cart" id="cartLink" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                
+                <div class="user-menu" id="userMenu">
+                    <button class="user-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Guest</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="/orders" class="dropdown-item">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>My Orders</span>
+                        </a>
+                        <a href="/settings" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button id="logoutBtn" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Welcome to <span class="highlight">CampusMart</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Your one-stop destination for campus merchandise. 
+                        Order individually or with your department. 
+                        Fast, secure, and convenient shopping experience.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="/products" class="btn btn-primary">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Shop Now</span>
+                        </a>
+                        <a href="/group-orders" class="btn btn-secondary">
+                            <i class="fas fa-users"></i>
+                            <span>Group Orders</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-graphic">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Apparel</span>
+                        </div>
+                        <div class="floating-card card-2">
+                            <i class="fas fa-mug-hot"></i>
+                            <span>Accessories</span>
+                        </div>
+                        <div class="floating-card card-3">
+                            <i class="fas fa-book"></i>
+                            <span>Stationery</span>
+                        </div>
+                        <div class="floating-card card-4">
+                            <i class="fas fa-gift"></i>
+                            <span>Gifts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Our Portal?</h2>
+                <p class="section-subtitle">Experience the best in campus merchandise shopping</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient1)"/>
+                            <path d="M8 12h16l-1.5 8H9.5L8 12z" fill="white"/>
+                            <circle cx="12" cy="24" r="2" fill="white"/>
+                            <circle cx="20" cy="24" r="2" fill="white"/>
+                            <path d="M6 8h20v2H6V8z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient1" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#3b82f6"/>
+                                    <stop offset="1" stop-color="#1d4ed8"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Easy Ordering</h3>
+                    <p class="feature-description">
+                        Browse and order merchandise with just a few clicks. 
+                        Simple, intuitive interface designed for everyone.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient2)"/>
+                            <circle cx="16" cy="12" r="4" fill="white"/>
+                            <path d="M8 24c0-4 3.5-8 8-8s8 4 8 8" fill="white"/>
+                            <circle cx="22" cy="10" r="3" fill="white"/>
+                            <path d="M20 20c0-2 1.5-4 3-4s3 2 3 4" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#8b5cf6"/>
+                                    <stop offset="1" stop-color="#7c3aed"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Group Orders</h3>
+                    <p class="feature-description">
+                        Coordinate with your department for bulk orders. 
+                        Save money and streamline the ordering process.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient3)"/>
+                            <path d="M16 4L20 8H24V12L28 16L24 20V24H20L16 28L12 24H8V20L4 16L8 12V8H12L16 4Z" fill="white"/>
+                            <path d="M12 16L14 18L20 12" stroke="#10b981" stroke-width="2" fill="none"/>
+                            <defs>
+                                <linearGradient id="gradient3" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#10b981"/>
+                                    <stop offset="1" stop-color="#059669"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure Payments</h3>
+                    <p class="feature-description">
+                        Safe and secure payment processing with Razorpay. 
+                        Your financial information is always protected.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient4)"/>
+                            <rect x="6" y="14" width="20" height="8" rx="2" fill="white"/>
+                            <rect x="8" y="16" width="16" height="4" rx="1" fill="#f59e0b"/>
+                            <circle cx="10" cy="18" r="1" fill="white"/>
+                            <circle cx="22" cy="18" r="1" fill="white"/>
+                            <path d="M12 10L16 6L20 10" stroke="white" stroke-width="2" fill="none"/>
+                            <defs>
+                                <linearGradient id="gradient4" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#f59e0b"/>
+                                    <stop offset="1" stop-color="#d97706"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-description">
+                        Quick and reliable delivery to your campus. 
+                        Track your orders in real-time.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient5)"/>
+                            <path d="M16 4L20 12H28L22 18L24 28L16 24L8 28L10 18L4 12H12L16 4Z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient5" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#ef4444"/>
+                                    <stop offset="1" stop-color="#dc2626"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Reviews & Ratings</h3>
+                    <p class="feature-description">
+                        Read reviews from other students and staff. 
+                        Make informed decisions about your purchases.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient6)"/>
+                            <circle cx="16" cy="12" r="6" fill="white"/>
+                            <path d="M8 24c0-4 3.5-8 8-8s8 4 8 8" fill="white"/>
+                            <circle cx="16" cy="12" r="2" fill="#06b6d4"/>
+                            <defs>
+                                <linearGradient id="gradient6" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#06b6d4"/>
+                                    <stop offset="1" stop-color="#0891b2"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">
+                        Get help whenever you need it. 
+                        Our support team is always ready to assist you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <p class="section-subtitle">Check out our most popular items</p>
+            </div>
+            
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be loaded here -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Loading products...</span>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <a href="/products" class="btn btn-outline">
+                    <i class="fas fa-store"></i>
+                    <span>View All Products</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Shop by Category</h2>
+                <p class="section-subtitle">Find exactly what you're looking for</p>
+            </div>
+            
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be loaded here -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Loading categories...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalProducts">0</div>
+                    <div class="stat-label">Products Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalOrders">0</div>
+                    <div class="stat-label">Orders Placed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalUsers">0</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="satisfactionRate">100%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Login</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" id="loginTab">Login</button>
+                    <button class="tab-btn" id="registerTab">Register</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerDepartment">Department</label>
+                        <select id="registerDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Management">Management</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">CampusMart</h4>
+                    <p class="footer-description">
+                        Your trusted campus store for all merchandise needs. 
+                        Quality products, great prices, and excellent service.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://facebook.com/campusmart" class="social-link" target="_blank" title="Follow us on Facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://twitter.com/campusmart" class="social-link" target="_blank" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://instagram.com/campusmart" class="social-link" target="_blank" title="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://linkedin.com/company/campusmart" class="social-link" target="_blank" title="Connect with us on LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://youtube.com/campusmart" class="social-link" target="_blank" title="Subscribe to our YouTube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="https://tiktok.com/@campusmart" class="social-link" target="_blank" title="Follow us on TikTok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/group-orders">Group Orders</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="/help">Help Center</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/shipping">Shipping Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@merchandiseportal.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Campus Store, University Campus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CampusMart. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

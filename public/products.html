@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - CampusMart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛍️</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="brand-link">
+                    <div class="brand-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                            <path d="M8 12h16l-1.5 8H9.5L8 12z" fill="white"/>
+                            <circle cx="12" cy="24" r="2" fill="white"/>
+                            <circle cx="20" cy="24" r="2" fill="white"/>
+                            <path d="M6 8h20v2H6V8z" fill="white"/>
+                            <defs>
+                                <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#6366f1"/>
+                                    <stop offset="1" stop-color="#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-name">CampusMart</span>
+                        <span class="brand-tagline">Your Campus Store</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/products" class="nav-link active">
+                    <i class="fas fa-store"></i>
+                    <span>Products</span>
+                </a>
+                <a href="/orders" class="nav-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>My Orders</span>
+                </a>
+                <a href="/group-orders" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span>Group Orders</span>
+                </a>
+                <a href="/reviews" class="nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Reviews</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products..." class="search-input">
+                    <button id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="cart-icon">
+                    <a href="/cart" id="cartLink" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                
+                <div class="user-menu" id="userMenu">
+                    <button class="user-btn" id="userBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userName">Guest</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="/orders" class="dropdown-item">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>My Orders</span>
+                        </a>
+                        <a href="/settings" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button id="logoutBtn" class="dropdown-item logout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Products Header -->
+    <section class="products-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">Our Products</h1>
+                <p class="page-subtitle">Discover amazing campus merchandise for all your needs</p>
+                
+                <!-- Search and Filter Bar -->
+                <div class="search-filter-bar">
+                    <div class="search-section">
+                        <div class="search-input-group">
+                            <input type="text" id="mainSearchInput" placeholder="Search products..." class="main-search-input">
+                            <button id="mainSearchBtn" class="main-search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <div class="filter-group">
+                            <label for="categoryFilter">Category:</label>
+                            <select id="categoryFilter" class="filter-select">
+                                <option value="">All Categories</option>
+                                <option value="apparel">Apparel</option>
+                                <option value="accessories">Accessories</option>
+                                <option value="stationery">Stationery</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="sports">Sports</option>
+                                <option value="books">Books</option>
+                                <option value="gifts">Gifts</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="sortFilter">Sort by:</label>
+                            <select id="sortFilter" class="filter-select">
+                                <option value="newest">Newest First</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name A-Z</option>
+                                <option value="popular">Most Popular</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="priceFilter">Price Range:</label>
+                            <select id="priceFilter" class="filter-select">
+                                <option value="">All Prices</option>
+                                <option value="0-100">Under ₹100</option>
+                                <option value="100-300">₹100 - ₹300</option>
+                                <option value="300-500">₹300 - ₹500</option>
+                                <option value="500-1000">₹500 - ₹1000</option>
+                                <option value="1000+">Above ₹1000</option>
+                            </select>
+                        </div>
+                        
+                        <button id="clearFilters" class="btn btn-outline btn-sm">
+                            <i class="fas fa-times"></i>
+                            Clear Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <!-- Results Header -->
+            <div class="results-header">
+                <div class="results-info">
+                    <h2 id="resultsTitle">All Products</h2>
+                    <p id="resultsCount" class="results-count">Loading products...</p>
+                </div>
+                
+                <div class="view-options">
+                    <button id="gridView" class="view-btn active" title="Grid View">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button id="listView" class="view-btn" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Products Grid/List -->
+            <div class="products-container">
+                <div id="productsGrid" class="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination-container" id="paginationContainer" style="display: none;">
+                <div class="pagination">
+                    <button id="prevPage" class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    
+                    <div class="pagination-numbers" id="paginationNumbers">
+                        <!-- Page numbers will be generated here -->
+                    </div>
+                    
+                    <button id="nextPage" class="pagination-btn">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content product-modal-content">
+            <div class="modal-header">
+                <h3 id="modalProductName">Product Name</h3>
+                <button class="modal-close" id="productModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="product-modal-content">
+                    <div class="product-modal-image">
+                        <div class="product-image-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    <div class="product-modal-details">
+                        <div class="product-price-section">
+                            <span class="product-price" id="modalProductPrice">₹0</span>
+                            <span class="product-original-price" id="modalProductOriginalPrice" style="display: none;">₹0</span>
+                            <span class="product-discount" id="modalProductDiscount" style="display: none;">0% OFF</span>
+                        </div>
+                        
+                        <div class="product-description" id="modalProductDescription">
+                            Product description will appear here.
+                        </div>
+                        
+                        <div class="product-specifications" id="modalProductSpecifications">
+                            <!-- Specifications will be loaded here -->
+                        </div>
+                        
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <label for="quantity">Quantity:</label>
+                                <div class="quantity-controls">
+                                    <button id="decreaseQty" class="quantity-btn">-</button>
+                                    <input type="number" id="quantity" value="1" min="1" max="10">
+                                    <button id="increaseQty" class="quantity-btn">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button id="addToCartModal" class="btn btn-primary">
+                                    <i class="fas fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button id="buyNowModal" class="btn btn-secondary">
+                                    <i class="fas fa-bolt"></i>
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Login</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-tabs">
+                    <button class="tab-btn active" id="loginTab">Login</button>
+                    <button class="tab-btn" id="registerTab">Register</button>
+                </div>
+                
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                </form>
+                
+                <form id="registerForm" class="auth-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerDepartment">Department</label>
+                        <select id="registerDepartment" required>
+                            <option value="">Select Department</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Management">Management</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">CampusMart</h4>
+                    <p class="footer-description">
+                        Your trusted campus store for all merchandise needs. 
+                        Quality products, great prices, and excellent service.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="/products">Products</a></li>
+                        <li><a href="/orders">My Orders</a></li>
+                        <li><a href="/group-orders">Group Orders</a></li>
+                        <li><a href="/reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="/help">Help Center</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/shipping">Shipping Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@merchandiseportal.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Campus Store, University Campus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 CampusMart. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
