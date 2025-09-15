@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Products</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Products Test</h1>
+    <div id="status"></div>
+    <div id="products"></div>
+
+    <script>
+        async function testProducts() {
+            const statusDiv = document.getElementById('status');
+            const productsDiv = document.getElementById('products');
+            
+            try {
+                statusDiv.innerHTML = '<p>Loading products...</p>';
+                
+                const response = await fetch('/api/products?limit=5');
+                const data = await response.json();
+                
+                if (data.success) {
+                    statusDiv.innerHTML = '<p class="success">✅ Products loaded successfully!</p>';
+                    
+                    const products = data.data.products;
+                    productsDiv.innerHTML = `
+                        <h2>Found ${products.length} products:</h2>
+                        ${products.map(product => `
+                            <div class="product">
+                                <h3>${product.name}</h3>
+                                <p><strong>Category:</strong> ${product.category}</p>
+                                <p><strong>Price:</strong> ₹${product.price}</p>
+                                <p><strong>Description:</strong> ${product.description}</p>
+                            </div>
+                        `).join('')}
+                    `;
+                } else {
+                    statusDiv.innerHTML = '<p class="error">❌ Failed to load products: ' + data.message + '</p>';
+                }
+            } catch (error) {
+                statusDiv.innerHTML = '<p class="error">❌ Error: ' + error.message + '</p>';
+            }
+        }
+        
+        // Test when page loads
+        testProducts();
+    </script>
+</body>
+</html>
+
+

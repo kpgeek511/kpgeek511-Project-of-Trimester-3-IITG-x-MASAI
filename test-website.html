@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Merchandise Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background-color: #0056b3; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Merchandise Portal - System Test</h1>
+        
+        <div class="status info">
+            <strong>Server Status:</strong> Running on http://localhost:3000
+        </div>
+        
+        <h2>Test API Endpoints</h2>
+        <button onclick="testProducts()">Test Products API</button>
+        <button onclick="testCategories()">Test Categories API</button>
+        <button onclick="testFeatured()">Test Featured Products</button>
+        <button onclick="testAuth()">Test Auth API</button>
+        
+        <div id="results"></div>
+        
+        <h2>Quick Links</h2>
+        <p>
+            <a href="http://localhost:3000" target="_blank">🏠 Main Website</a> |
+            <a href="http://localhost:3000/products.html" target="_blank">🛍️ Products Page</a> |
+            <a href="http://localhost:3000/orders.html" target="_blank">📦 Orders Page</a>
+        </p>
+        
+        <h2>Sample Login Credentials</h2>
+        <div class="status info">
+            <strong>Admin:</strong> admin@example.com / admin123<br>
+            <strong>User:</strong> john.doe@example.com / password123<br>
+            <strong>Dept Head:</strong> jane.smith@example.com / password123
+        </div>
+    </div>
+
+    <script>
+        async function testAPI(url, name) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('results').innerHTML += 
+                        `<div class="status success">✅ ${name}: SUCCESS (${response.status})</div>`;
+                } else {
+                    document.getElementById('results').innerHTML += 
+                        `<div class="status error">❌ ${name}: FAILED (${response.status}) - ${data.message || 'Unknown error'}</div>`;
+                }
+            } catch (error) {
+                document.getElementById('results').innerHTML += 
+                    `<div class="status error">❌ ${name}: ERROR - ${error.message}</div>`;
+            }
+        }
+        
+        function testProducts() {
+            testAPI('http://localhost:3000/api/products', 'Products API');
+        }
+        
+        function testCategories() {
+            testAPI('http://localhost:3000/api/products/categories/list', 'Categories API');
+        }
+        
+        function testFeatured() {
+            testAPI('http://localhost:3000/api/products/featured/list', 'Featured Products API');
+        }
+        
+        function testAuth() {
+            testAPI('http://localhost:3000/api/auth/me', 'Auth API (should fail without login)');
+        }
+        
+        // Auto-test on page load
+        window.onload = function() {
+            setTimeout(() => {
+                testProducts();
+                testCategories();
+                testFeatured();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
+
